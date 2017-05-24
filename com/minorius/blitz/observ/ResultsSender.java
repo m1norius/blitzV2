@@ -29,7 +29,7 @@ public class ResultsSender implements Observer {
         System.out.println("Observer data 2 - "+inputAnswerFromPlayer2+", "+socketForPlayer_2);
 
         //отправить результат противнику
-        sendResults(inputAnswerFromPlayer, inputAnswerFromPlayer2, socketForPlayer_1,socketForPlayer_2);
+        sendResults(inputAnswerFromPlayer, inputAnswerFromPlayer2, socketForPlayer_1, socketForPlayer_2);
 
     }
 
