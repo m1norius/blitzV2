@@ -1,10 +1,8 @@
 package com.minorius.blitz;
 
 import com.minorius.blitz.game.GameManager;
-import com.minorius.blitz.model.TransferableData;
 import com.minorius.blitz.observ.ObservableAnswers;
 
-import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;

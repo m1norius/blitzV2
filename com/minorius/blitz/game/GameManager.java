@@ -211,7 +211,7 @@ public class GameManager {
                 }catch (EOFException e){
                     System.out.println("! Check EOF exception "+e+", - "+socket);
 
-                    if (Main.sessionsOfGame.get(id)!=null && Main.sessionsOfGame.get(id)!=null){
+                    if (Main.sessionsOfGame.get(id)!=null){
                         if(!Main.sessionsOfGame.get(id).getSocketPlayer1().equals(socket)){
                             //отправить getSocketPlayer1 обьект противнику + овер = тру
                             QuestionSender sender = new QuestionSender(Main.sessionsOfGame.get(id).getSocketPlayer1());
@@ -249,12 +249,12 @@ public class GameManager {
 
                 //пишем результат в ObservableAnswers
                 Main.sessionsOfGame.get(id).setAnswersPlayer1(buffer);
-                //получаем текущий номер вопроса
+                //получаем текущий номер вопроса(количество ответов игрока)
                 int numOfQuestionForFirstPlayer = Main.sessionsOfGame.get(id).getNumOfQuestionPlayer1();
                 numOfQuestionForFirstPlayer++;
                 //получаем размер листа
                 int sizeOfList = Main.sessionsOfGame.get(id).getListWithQuestionsForSession().size();
-                //если количество ответов игрока меньше чем количество ответов дргугого игрока,
+                //если количество ответов игрока меньше чем количество ответов дргугого игрока(размер листа),
                 // то берем уже созданый вопрос
                 if(numOfQuestionForFirstPlayer < sizeOfList){
                     TransferableData question = Main.sessionsOfGame.get(id).getListWithQuestionsForSession().get(numOfQuestionForFirstPlayer);
@@ -265,10 +265,7 @@ public class GameManager {
                     TransferableData question = Main.sessionsOfGame.get(id).getListWithQuestionsForSession().get(numOfQuestionForFirstPlayer);
                     new QuestionSender(Main.sessionsOfGame.get(id).getSocketPlayer1()).sendNewQuestion(question);
                 }
-
-                //плюсуем 1, для отправки следующего вопроса в коллекции
                 Main.sessionsOfGame.get(id).setNumOfQuestionPlayer1(numOfQuestionForFirstPlayer);
-                //отправить новый вопрос тому кто прислал ответ
             } else {
                 System.out.println(Main.sessionsOfGame.get(id).getSocketPlayer1().isConnected());
                 System.out.println(Main.sessionsOfGame.get(id).getSocketPlayer2().isConnected());
